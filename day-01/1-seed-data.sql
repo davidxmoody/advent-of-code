@@ -88,14 +88,3 @@ INSERT INTO day_one (val) VALUES
 (+5), (-18), (-12), (-12), (-17), (+6), (-9), (-21), (+1), (+6), (-12), (+15),
 (-14), (+24), (+6), (+18), (-16), (+15), (-18), (-6), (+20), (+11), (+4),
 (-17), (+8), (-9), (+78549);
-
-CREATE TABLE day_one_repeating (id SERIAL, val INTEGER);
-
--- Repeat this lots :)
-INSERT INTO day_one_repeating (val) SELECT val FROM day_one ORDER BY id;
-
-CREATE VIEW day_one_running_totals AS SELECT id, val, sum(val) OVER (ORDER BY id) AS running_total FROM day_one_repeating;
-
-WITH with_rank AS (SELECT *, rank() OVER (PARTITION BY running_total ORDER BY id) FROM day_one_running_totals)
-
-SELECT id, running_total FROM with_rank WHERE rank > 1 ORDER BY id LIMIT 1;
