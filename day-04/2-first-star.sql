@@ -24,4 +24,6 @@ CREATE MATERIALIZED VIEW day_four_sleeps AS SELECT g_id, sleep_at, wake_at, (wak
 
 CREATE MATERIALIZED VIEW sleepiest_guard AS SELECT g_id FROM day_four_sleeps GROUP BY g_id ORDER BY sum(duration) DESC LIMIT 1;
 
-SELECT (SELECT g_id FROM sleepiest_guard)::integer * min FROM (SELECT generate_series(sleep_at, wake_at - 1) AS min FROM day_four_sleeps WHERE g_id = (SELECT g_id FROM sleepiest_guard)) AS a GROUP BY min ORDER BY count(min) DESC LIMIT 1;
+CREATE MATERIALIZED VIEW sleepiest_minute AS SELECT min FROM (SELECT generate_series(sleep_at, wake_at - 1) AS min FROM day_four_sleeps WHERE g_id = (SELECT g_id FROM sleepiest_guard)) AS a GROUP BY min ORDER BY count(min) DESC LIMIT 1;
+
+SELECT (SELECT g_id FROM sleepiest_guard)::integer * (SELECT * FROM sleepiest_minute);
