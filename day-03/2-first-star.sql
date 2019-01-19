@@ -7,8 +7,7 @@ CREATE OR REPLACE FUNCTION get_squares(x INTEGER, y INTEGER, w INTEGER, h INTEGE
   END;
 $$ LANGUAGE 'plpgsql';
 
-SELECT count(*) FROM (
-  SELECT a FROM (
-    SELECT get_squares(x, y, w, h) AS a FROM day_three_extracted
-  ) AS b GROUP BY a HAVING count(*) > 1
-) as c;
+CREATE MATERIALIZED VIEW day_three_all_conflicting_squares AS 
+  (SELECT a AS square FROM (SELECT get_squares(x, y, w, h) AS a FROM day_three_extracted) AS b GROUP BY a HAVING count(*) > 1);
+
+SELECT count(*) from day_three_all_conflicting_squares;
