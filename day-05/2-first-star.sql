@@ -19,6 +19,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT length(array_to_string(
-    collapse(regexp_split_to_array((SELECT val FROM day_five), ''))
-, ''));
+CREATE OR REPLACE FUNCTION get_collapsed_length(text) RETURNS integer AS $$
+  SELECT length(array_to_string(collapse(regexp_split_to_array($1, '')), ''))
+$$ LANGUAGE sql;
+
+SELECT get_collapsed_length((SELECT val FROM day_five));
