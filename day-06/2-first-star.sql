@@ -19,3 +19,11 @@ CREATE OR REPLACE FUNCTION manhattan_distance(ax integer, ay integer, bx integer
 RETURNS integer AS $$
   SELECT abs(ax - bx) + abs(ay - by);
 $$ IMMUTABLE LANGUAGE sql;
+
+CREATE MATERIALIZED VIEW lowest_distances AS (
+  WITH all_combinations AS (SELECT manhattan_distance(x, y, gx, gy) AS dist, x, y, gx, gy, (CASE is_edge WHEN true THEN 1 ELSE 0 END) AS edge FROM grid_squares FULL OUTER JOIN day_six ON true)
+
+  SELECT (array_agg(dist ORDER BY dist))[1] AS dist, (array_agg(x ORDER BY dist))[1] AS x, (array_agg(y ORDER BY dist))[1] AS y, gx, gy, edge FROM all_combinations GROUP BY (gx, gy, edge) HAVING (array_agg(dist ORDER BY dist))[1] != (array_agg(dist ORDER BY dist))[2]
+);
+
+SELECT count(*) FROM lowest_distances GROUP BY x, y HAVING sum(edge) = 0 ORDER BY count(*) DESC LIMIT 1;
