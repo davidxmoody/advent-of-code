@@ -17,7 +17,9 @@ function sum(xStart: number, yStart: number, size: number): number | null {
 
 let largest = -Infinity
 
-for (let size = 300; size >= 1; size--) {
+for (let size = 1; size <= 300; size++) {
+  const greatestPossible = size * size * 4
+  foo:
   for (let x = 0; x < 300; x++) {
     for (let y = 0; y < 300; y++) {
       const num = sum(x, y, size)
@@ -25,6 +27,12 @@ for (let size = 300; size >= 1; size--) {
         console.log(`Old: ${largest},	new: ${num},	x: ${x+1},	y: ${y+1},	size: ${size}`)
         largest = num
       }
+      if (num === greatestPossible) {
+        console.log(`Reached greatest possible: x=${x+1}, y=${y+1}, size=${size+1}`)
+        continue foo
+      }
     }
   }
 }
+
+// Solution: num=91, x=233, y=228, size=12
