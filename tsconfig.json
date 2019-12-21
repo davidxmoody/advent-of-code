@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./out",
+    "strict": true,
+    "target": "es2015",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"]
+}
