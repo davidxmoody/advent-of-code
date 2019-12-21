@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --watch-extensions ts,tsx --watch 'src/**/*.test.ts'"
+    "test": "mocha --require ts-node/register --watch-extensions ts,tsx --watch 'src/**/tests.ts'"
   },
   "keywords": [],
   "author": "David Moody <david@davidxmoody.com> (https://davidxmoody.com/)",
