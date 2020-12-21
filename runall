@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+for f in */*.lua; do lua "$f"; done | tee outputs.txt
