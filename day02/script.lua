@@ -1,5 +1,3 @@
-local inspect = require 'inspect'
-
 local input = {}
 for line in io.lines('day02/input.txt') do
   local num1, num2, letter, password = line:match('(%d+)%-(%d+) (%a): (%a+)')
