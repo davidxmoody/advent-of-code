@@ -1,0 +1,18 @@
+{
+  "name": "advent-of-code-2019",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require ts-node/register --watch-extensions ts,tsx --watch 'src/**/tests.ts'"
+  },
+  "keywords": [],
+  "author": "David Moody <david@davidxmoody.com> (https://davidxmoody.com/)",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4"
+  }
+}
