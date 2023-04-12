@@ -1,4 +1,5 @@
 import readLines from "../helpers/readLines"
+import triangleNumber from "../helpers/triangleNumber"
 
 const positions = readLines(__dirname + "/input.txt")[0]
   .split(",")
@@ -24,16 +25,4 @@ console.log(
   calculateBestFuelCost((distance) => distance),
 )
 
-const triangeNumberCache: Record<number, number> = []
-
-function triangeNumber(num: number): number {
-  if (num === 0) return 0
-
-  if (triangeNumberCache[num]) return triangeNumberCache[num]
-
-  const result = num + triangeNumber(num - 1)
-  triangeNumberCache[num] = result
-  return result
-}
-
-console.log("Star 2:", calculateBestFuelCost(triangeNumber))
+console.log("Star 2:", calculateBestFuelCost(triangleNumber))
