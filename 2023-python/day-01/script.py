@@ -23,8 +23,8 @@ def word_to_num(maybe_word: str):
 def extract_two_digits(line: str, parse_words: bool):
     match_part = rf"({'|'.join(text_numbers)}|\d)" if parse_words else r"(\d)"
 
-    first = re.search(f".*?{match_part}.*", line)
-    last = re.search(f".*{match_part}.*", line)
+    first = re.match(f".*?{match_part}.*", line)
+    last = re.match(f".*{match_part}.*", line)
 
     if first is None or last is None:
         raise Exception("Could not find numbers")
