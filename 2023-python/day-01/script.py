@@ -36,7 +36,8 @@ def calculate_answer(lines: list[str], parse_words=False):
     return sum([extract_two_digits(line, parse_words=parse_words) for line in lines])
 
 
-with open("day-01/input.txt", "r") as f:
-    lines = f.readlines()
-    print(f"Star 1: {calculate_answer(lines)}")
-    print(f"Star 2: {calculate_answer(lines, parse_words=True)}")
+lines = list(open("day-01/input.txt"))
+
+print(f"Star 1: {calculate_answer(lines)}")
+
+print(f"Star 2: {calculate_answer(lines, parse_words=True)}")

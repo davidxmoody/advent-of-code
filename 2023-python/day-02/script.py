@@ -23,8 +23,7 @@ def process_game(line: str):
     return (game_num, minimums)
 
 
-with open("day-02/input.txt", "r") as f:
-    games = [process_game(line) for line in f.readlines()]
+games = [process_game(line) for line in list(open("day-02/input.txt"))]
 
 star1 = sum(
     [

@@ -1,8 +1,6 @@
 import re
 
-
-with open("day-03/input.txt", "r") as f:
-    data = f.readlines()
+data = list(open("day-03/input.txt"))
 
 
 def is_symbol(char: str):
