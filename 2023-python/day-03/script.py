@@ -1,14 +1,8 @@
-import re
-
 data = list(open("day-03/input.txt"))
 
 
 def is_symbol(char: str):
-    return re.fullmatch(r"[^0-9.\n]", char)
-
-
-def is_digit(char: str):
-    return re.fullmatch(r"[0-9]", char)
+    return char != "." and not char.isdigit() and not char.isspace()
 
 
 def surrounding_points(y: int, x: int):
@@ -19,11 +13,11 @@ def surrounding_points(y: int, x: int):
 
 def capture_number(y: int, x: int):
     start = x
-    while start > 0 and is_digit(data[y][start - 1]):
+    while start > 0 and data[y][start - 1].isdigit():
         start -= 1
 
     end = x
-    while end < (len(data[y]) - 1) and is_digit(data[y][end + 1]):
+    while end < (len(data[y]) - 1) and data[y][end + 1].isdigit():
         end += 1
 
     return int(data[y][start : end + 1])
@@ -32,7 +26,7 @@ def capture_number(y: int, x: int):
 def find_surrounding_numbers(y: int, x: int):
     surrounding: set[int] = set()
     for y2, x2 in surrounding_points(y, x):
-        if is_digit(data[y2][x2]):
+        if data[y2][x2].isdigit():
             surrounding.add(capture_number(y2, x2))
     return list(surrounding)
 
