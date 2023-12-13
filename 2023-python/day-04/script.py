@@ -6,10 +6,10 @@ def parse_card(line: str):
     if match is None:
         raise Exception("Could not parse")
 
-    winning = set((int(x) for x in re.findall(r"\d+", match.group(1))))
-    ours = set((int(x) for x in re.findall(r"\d+", match.group(2))))
+    winning = set(re.findall(r"\d+", match.group(1)))
+    ours = set(re.findall(r"\d+", match.group(2)))
 
-    return len(winning.intersection(ours))
+    return len(winning & ours)
 
 
 cards = [parse_card(line) for line in list(open("day-04/input.txt"))]

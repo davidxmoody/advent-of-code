@@ -38,6 +38,6 @@ def calculate_answer(lines: list[str], parse_words=False):
 
 lines = list(open("day-01/input.txt"))
 
-print(f"Star 1: {calculate_answer(lines)}")
+print("Star 1:", calculate_answer(lines))
 
-print(f"Star 2: {calculate_answer(lines, parse_words=True)}")
+print("Star 2:", calculate_answer(lines, parse_words=True))

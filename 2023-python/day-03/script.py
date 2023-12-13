@@ -45,6 +45,6 @@ for y, line in enumerate(data):
             if char == "*" and len(numbers) == 2:
                 gear_ratio_total += numbers[0] * numbers[1]
 
-print(f"Star 1: {part_number_total}")
+print("Star 1:", part_number_total)
 
-print(f"Star 2: {gear_ratio_total}")
+print("Star 2:", gear_ratio_total)

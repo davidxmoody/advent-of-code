@@ -32,7 +32,9 @@ star1 = sum(
         if game[1]["red"] <= 12 and game[1]["green"] <= 13 and game[1]["blue"] <= 14
     ]
 )
-print(f"Star 1: {star1}")
+
+print("Star 1:", star1)
 
 star2 = sum([game[1]["red"] * game[1]["green"] * game[1]["blue"] for game in games])
-print(f"Star 2: {star2}")
+
+print("Star 2:", star2)
