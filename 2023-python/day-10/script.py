@@ -58,12 +58,11 @@ print("Star 1:", distance // 2)
 
 num_inside = 0
 for line in main_pipe:
+    is_inside = False
     for x, char in enumerate(line):
-        if char == ".":
-            num_crossings = sum(
-                [1 for char2 in line[x + 1 :] if char2 in ("|", "J", "L")]
-            )
-            if num_crossings % 2 == 1:
-                num_inside += 1
+        if char in ("|", "J", "L"):
+            is_inside = not is_inside
+        elif char == "." and is_inside:
+            num_inside += 1
 
 print("Star 2:", num_inside)
