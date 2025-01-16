@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "2024-python"
+version = "0.1.0"
+description = ""
+authors = ["David Moody <david@davidxmoody.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ipython = "^8.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
